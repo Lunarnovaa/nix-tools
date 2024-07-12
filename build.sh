@@ -10,12 +10,12 @@ sleep 1
 
 cd ~/nixconf
 
-until [ "${test}" == false ]; do
+until [ "${test}" = false ]; do
 
     echo -e "${cyan}Would you like to test? [${red}Y${cyan}/${green}n${cyan}]${noColor}"
     read -n 1 test
 
-    if [ ${test} = "n" ]; then
+    if [ "${test}" = "n" ]; then
         test=false
     else
         echo -e "${green}Adding all to working directory.${noColor}"
