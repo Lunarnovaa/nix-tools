@@ -30,7 +30,7 @@ until [ "${test}" == false ]; do
     fi
 done
 
-echo -e "${green} Please write commit message: ${noColor}"
+echo -e "\n${green}Please write commit message: ${noColor}"
 read commitmsg
 git commit -m "${commitmsg}"
 
