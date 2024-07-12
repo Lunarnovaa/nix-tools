@@ -1,6 +1,6 @@
 ## This script does a few things:
 
-1. Allows you to continuously perform a **"test,"** where the following is performed:
+1. Allows you to repeatedly perform a **"test,"** where the following is performed:
     1. Adds any new files to the Git Repo
     2. Formats the code using [Alejandra](https://github.com/kamadorueda/alejandra)
     3. Removes a certain auto-generated file because Nix will through a fit when it and the backup file is there. *Remove this if it is not necessary for you.*
