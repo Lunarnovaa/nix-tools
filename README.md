@@ -9,6 +9,6 @@
 3. Asks if you want to switch to your config **now or on next boot**
 4. Asks if you want to **update your flake** using [nh](https://github.com/viperML/nh)  *(defaults to no)*
 5. **Rebuilds**
-6. *Optionally `Flake Update` **commits***
+6. *If chose to update, **commits** with specific msg*
 7. Asks if you want to **push** *(yes by default)*
 8. **Cleans** your NixOS config keeping 5 boot saves.
