@@ -32,7 +32,6 @@ done
 
 echo -e "\n${green}Please write commit message: ${noColor}"
 read commitmsg
-git commit -m "${commitmsg}"
 
 echo -e "${cyan}Switch now or at boot? [${red}switch${cyan}/${green}boot${cyan}]${noColor}"
 read switch
@@ -47,6 +46,8 @@ if [ "${update}" = "y" ]; then
 else
     nh os ${switch}
 fi
+
+git commit -a -m "${commitmsg}"
 
 echo -e "${cyan}Would you like to push your changes? [${red}Y${cyan}/${green}n${cyan}]${noColor}"
 read -n 1 push
