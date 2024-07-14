@@ -30,8 +30,10 @@ until [ "${test}" = false ]; do
     fi
 done
 
-echo -e "\n${green}Please write commit message: ${noColor}"
+echo -e "\n${cyan}Please write commit message: ${noColor}"
 read commitmsg
+
+git commit -a -m "${commitmsg}"
 
 echo -e "${cyan}Switch now or at boot? [${red}switch${cyan}/${green}boot${cyan}]${noColor}"
 read switch
@@ -43,13 +45,14 @@ rm ${HOME}/.gtkrc-2.0
 
 if [ "${update}" = "y" ]; then
     nh os ${switch} --update --ask #asks so you dont get shocked by everything restarting
+
+    echo -e "${green}Committing update.${noColor}"
+    git commit -a -m "Flake Update"
 else
     nh os ${switch}
 fi
 
-git commit -a -m "${commitmsg}"
-
-echo -e "${cyan}Would you like to push your changes? [${red}Y${cyan}/${green}n${cyan}]${noColor}"
+echo -e "${cyan}Would you like to push to remote? [${red}Y${cyan}/${green}n${cyan}]${noColor}"
 read -n 1 push
 push=${push:-"y"} #sets default value to yes
 
