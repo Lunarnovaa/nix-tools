@@ -5,6 +5,12 @@ red='\033[1;31m'
 noColor='\033[0m'
 test=true
 
+fCommit() {
+    echo -e "\n${green}Please write commit message: ${noColor}"
+    read commitmsg
+    git commit -a -m "${commitmsg}"
+}
+
 echo -e "${cyan}Welcome to the NixBuild script.${noColor}"
 sleep 1
 
@@ -27,13 +33,19 @@ until [ "${test}" = false ]; do
         rm ${HOME}/.gtkrc-2.0 #removing the backup of the annoying file :(
 
         nh os test
+
+        echo -e "${cyan}Would you like to commit the changes?[${red}Y${cyan}/${green}n${cyan}]${noColor}"
+        read -n 1 commit
+        if [ "${commit}" != "n" ]; then
+            fCommit()
+        fi
+
     fi
 done
 
-echo -e "\n${cyan}Please write commit message: ${noColor}"
-read commitmsg
-
-git commit -a -m "${commitmsg}"
+if [ "${commit}" = "n" ]; then
+    fCommit()
+fi
 
 echo -e "${cyan}Switch now or at boot? [${red}switch${cyan}/${green}boot${cyan}]${noColor}"
 read switch
@@ -54,9 +66,8 @@ fi
 
 echo -e "${cyan}Would you like to push to remote? [${red}Y${cyan}/${green}n${cyan}]${noColor}"
 read -n 1 push
-push=${push:-"y"} #sets default value to yes
 
-if [ "${push}" = "y" ]; then
+if [ "${push}" != "n" ]; then
     git push
 fi
 
