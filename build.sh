@@ -37,14 +37,14 @@ until [ "${test}" = false ]; do
         echo -e "${cyan}Would you like to commit the changes?[${red}Y${cyan}/${green}n${cyan}]${noColor}"
         read -n 1 commit
         if [ "${commit}" != "n" ]; then
-            fCommit()
+            fCommit
         fi
 
     fi
 done
 
 if [ "${commit}" = "n" ]; then
-    fCommit()
+    fCommit
 fi
 
 echo -e "${cyan}Switch now or at boot? [${red}switch${cyan}/${green}boot${cyan}]${noColor}"
