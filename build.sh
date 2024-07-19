@@ -29,9 +29,9 @@ do
             echo -e "${green}Running build test.${noColor}"
             nh os test
 
-            echo -e "${cyan}Would you like to commit the changes? [${red}Y${cyan}/${green}n${cyan}]${noColor}"
+            echo -e "${cyan}Would you like to commit the changes? [${red}y${cyan}/${green}N${cyan}]${noColor}"
             read -n 1 commit
-            if [ "${commit}" != "n" ]; then
+            if [ "${commit}" = "y" ]; then
                 fCommit
             fi
         ;;
@@ -50,9 +50,9 @@ do
             echo -e "${green}Running build test.${noColor}"
             nh os test
 
-            echo -e "${cyan}Would you like to commit the changes? [${red}Y${cyan}/${green}n${cyan}]${noColor}"
+            echo -e "${cyan}Would you like to commit the changes? [${red}y${cyan}/${green}N${cyan}]${noColor}"
             read -n 1 commit
-            if [ "${commit}" != "n" ]; then
+            if [ "${commit}" = "y" ]; then
                 fCommit
             fi
         ;;
