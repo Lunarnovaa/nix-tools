@@ -34,7 +34,7 @@ until [ "${test}" = false ]; do
 
         nh os test
 
-        echo -e "${cyan}Would you like to commit the changes?[${red}Y${cyan}/${green}n${cyan}]${noColor}"
+        echo -e "${cyan}Would you like to commit the changes? [${red}Y${cyan}/${green}n${cyan}]${noColor}"
         read -n 1 commit
         if [ "${commit}" != "n" ]; then
             fCommit
@@ -68,6 +68,13 @@ echo -e "${cyan}Would you like to push to remote? [${red}Y${cyan}/${green}n${cya
 read -n 1 push
 
 if [ "${push}" != "n" ]; then
+    echo -e "${cyan}Rebase before pushing? [${red}y${cyan}/${green}N${cyan}]${noColor}"
+    read -n 1 rebase
+
+    if [ "${rebase}" = "y" ]; then
+        git rebase --interactive
+    fi
+    
     git push
 fi
 
