@@ -9,7 +9,7 @@ fCommit() {
     read commitmsg
     git commit -a -m "${commitmsg}"
 }
-echo -e "${cyan}Welcome to the NixBuild script.${noColor}"
+echo -e "${green}Welcome to the NixBuild script.${cyan}"
 sleep 1
 
 cd ~/nixconf
@@ -67,7 +67,7 @@ do
             done
         break;;
         *)
-            echo "Invalid Option";;
+            echo -e "${red}Invalid option.${noColor}";;
     esac
 done
 
@@ -75,8 +75,20 @@ done
         fCommit
     fi
 
-    echo -e "${cyan}Switch now or at boot? [${red}switch${cyan}/${green}boot${cyan}]${noColor}"
-    read switch
+    echo -e "${cyan}Switch now or at boot? [${red}switch${cyan}/${green}boot${cyan}]"
+    select switch in switch boot
+    do 
+        case $switch in
+            "switch")
+                export switch="switch"
+            break;;
+            "boot")
+                export switch="boot"
+            break;;
+            *)
+                echo -e "${red}Invalid option.${cyan}";;
+        esac
+    done
 
     echo -e "${cyan}Update? [${red}y${cyan}/${green}N${cyan}]${noColor}"
     read -n 1 update
