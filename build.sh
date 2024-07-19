@@ -14,60 +14,50 @@ sleep 1
 
 cd ~/nixconf
 
-select testType in "Build Test" "Flake Update Test"
+select testType in "Build Test" "Flake Update Test" "End Testing"
 do
     case $testType in
         "Build Test")
-            until [ "${test}" = "n" ]; do
-                    echo -e "${green}Adding all to working directory.${noColor}"
-                    git add . 
+            echo -e "${green}Adding all to working directory.${noColor}"
+            git add . 
 
-                    echo -e "${green}Formatting Nix code.${noColor}"
-                    alejandra .
+            echo -e "${green}Formatting Nix code.${noColor}"
+            alejandra .
 
-                    rm ${HOME}/.gtkrc-2.0 #removing the backup of the annoying file :(
-                    
-                    echo -e "${green}Running build test.${noColor}"
-                    nh os test
+            rm ${HOME}/.gtkrc-2.0 #removing the backup of the annoying file :(
+            
+            echo -e "${green}Running build test.${noColor}"
+            nh os test
 
-                    echo -e "${cyan}Would you like to commit the changes? [${red}Y${cyan}/${green}n${cyan}]${noColor}"
-                    read -n 1 commit
-                    if [ "${commit}" != "n" ]; then
-                        fCommit
-                    fi
-
-                echo -e "${cyan}Would you like to test again? [${red}Y${cyan}/${green}n${cyan}]${noColor}"
-                read -n 1 test
-            done
-        break;;
+            echo -e "${cyan}Would you like to commit the changes? [${red}Y${cyan}/${green}n${cyan}]${noColor}"
+            read -n 1 commit
+            if [ "${commit}" != "n" ]; then
+                fCommit
+            fi
+        ;;
         "Flake Update Test")
-            until [ "${test}" = "n" ]; do
-                rm ${HOME}/.gtkrc-2.0 #removing the backup of the annoying file :(
+            rm ${HOME}/.gtkrc-2.0 #removing the backup of the annoying file :(
 
-                echo -e "${green}Running flake update test.${noColor}"
-                nh os test --update
+            echo -e "${green}Running flake update test.${noColor}"
+            nh os test --update
 
-                echo -e "${green}Adding all to working directory.${noColor}"
-                git add . 
-                
-                echo -e "${green}Formatting Nix code.${noColor}"
-                alejandra .
-                
-                echo -e "${green}Running build test.${noColor}"
-                nh os test
+            echo -e "${green}Adding all to working directory.${noColor}"
+            git add . 
+            
+            echo -e "${green}Formatting Nix code.${noColor}"
+            alejandra .
+            
+            echo -e "${green}Running build test.${noColor}"
+            nh os test
 
-                echo -e "${cyan}Would you like to commit the changes? [${red}Y${cyan}/${green}n${cyan}]${noColor}"
-                read -n 1 commit
-                if [ "${commit}" != "n" ]; then
-                    fCommit
-                fi
-
-                echo -e "${cyan}Would you like to test again? [${red}Y${cyan}/${green}n${cyan}]${noColor}"
-                read -n 1 test
-            done
+            echo -e "${cyan}Would you like to commit the changes? [${red}Y${cyan}/${green}n${cyan}]${noColor}"
+            read -n 1 commit
+            if [ "${commit}" != "n" ]; then
+                fCommit
+            fi
+        ;;
+        "End Testing")
         break;;
-        *)
-            echo -e "${red}Invalid option.${noColor}";;
     esac
 done
 

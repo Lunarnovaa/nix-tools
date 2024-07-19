@@ -1,13 +1,13 @@
 ## This script does a few things:
 
-1. Allows you to repeatedly perform one of two **tests:**
-    1. Build Test: *The standard test for most cases*
+1. Allows you to repeatedly choose to perform a **test:**
+    1. **Build Test:** *The standard test for most cases*
         1. Adds any new files to the Git Repo
         2. Formats the code using [Alejandra](https://github.com/kamadorueda/alejandra)
         3. Removes a certain auto-generated file because Nix will through a fit when it and the backup file is there. *Remove this if it is not necessary for you*
         4. Runs `nh os test`
         5. Optionally **commits** your changes with a given message
-    2. Flake Update Test: *This is in cases where an update may fix an issue being faced*
+    2. **Flake Update Test:** *This is in cases where an update may fix an issue being faced*
         1. Removes a certain auto-generated file because Nix will through a fit when it and the backup file is there. *Remove this if it is not necessary for you*
         2. Runs `nh os test --update`
         3. Adds any new files to the Git Repo
