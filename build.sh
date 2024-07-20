@@ -65,7 +65,7 @@ done
         fCommit
     fi
 
-    echo -e "${cyan}Switch now or at boot? [${red}switch${cyan}/${green}boot${cyan}]"
+    echo -e "${green}Switch now or at boot?${cyan}"
     select switch in switch boot
     do 
         case $switch in
@@ -75,8 +75,6 @@ done
             "boot")
                 export switch="boot"
             break;;
-            *)
-                echo -e "${red}Invalid option.${cyan}";;
         esac
     done
 
