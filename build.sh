@@ -14,7 +14,7 @@ sleep 1
 
 cd ~/nixconf
 
-select testType in "Build Test" "Flake Update Test" "End Testing"
+select testType in "Build Test" "Flake Update Test" "Pull and Rebuild" "Reset to Commit" "Build and Switch"
 do
     case $testType in
         "Build Test")
@@ -56,7 +56,18 @@ do
                 fCommit
             fi
         ;;
-        "End Testing")
+        "Pull and Rebuild")
+            echo -e "${green}Pulling from remote.${noColor}"
+            git pull
+            
+            echo -e "${green}Rebuilding.${noColor}"
+            nh os switch
+        ;;
+        "Reset to Commit")
+            echo -e "${green}Resetting to last commit.${noColor}"
+            git reset --hard HEAD
+        ;;
+        "Build and Switch")
         break;;
     esac
 done
