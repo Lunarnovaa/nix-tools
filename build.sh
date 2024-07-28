@@ -65,6 +65,7 @@ do
         ;;
         "Reset to Commit")
             echo -e "${green}Resetting to last commit.${noColor}"
+            git add .
             git reset --hard HEAD
         ;;
         "Build and Switch")
