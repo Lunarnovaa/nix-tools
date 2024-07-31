@@ -9,10 +9,16 @@ fCommit() {
     read commitmsg
     git commit -a -m "${commitmsg}"
 }
-echo -e "${green}Welcome to the NixBuild script.${cyan}"
-sleep 1
 
 cd ~/nixconf
+
+echo -e "${green}Welcome to the NixBuild script."
+
+echo -e "${red}Current branches on repo:"
+git show-branch --list
+
+echo -e "${cyan}"
+sleep 1
 
 select testType in "Build Test" "Flake Update Test" "Pull and Rebuild" "Switch Branch" "Reset to Commit" "Build and Switch"
 do
@@ -63,10 +69,7 @@ do
             echo -e "${green}Rebuilding.${noColor}"
             nh os switch
         ;;        
-        "Switch Branch")
-            echo -e "${green}Current branches on repo:${cyan}"
-            git show-branch     
-                   
+        "Switch Branch")                   
             echo -e "${green}Name the branch to switch to:${noColor}"
             read branch
             git switch ${branch}
