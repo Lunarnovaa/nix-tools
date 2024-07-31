@@ -19,6 +19,8 @@
         alejandra
       ];
       shellHook = ''
+        git pull # here so that the script does not get changed during run
+
         export FLAKE="$HOME/nixconf"
         bash build.sh
         exit
