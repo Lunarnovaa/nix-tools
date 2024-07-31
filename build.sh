@@ -54,6 +54,7 @@ do
             alejandra .
             
             echo -e "${green}Running build test.${noColor}"
+            rm ${HOME}/.gtkrc-2.0
             nh os test
 
             echo -e "${cyan}Would you like to commit the changes? [${red}y${cyan}/${green}N${cyan}]${noColor}"
@@ -67,12 +68,24 @@ do
             git pull
             
             echo -e "${green}Rebuilding.${noColor}"
+            rm ${HOME}/.gtkrc-2.0
             nh os switch
         ;;        
-        "Switch Branch")                   
+        "Switch Branch")           
+            echo -e "${red}Current branches on repo:"
+            git show-branch --list
+        
             echo -e "${green}Name the branch to switch to:${noColor}"
             read branch
             git switch ${branch}
+
+            echo -e "${cyan}Do you wanna rebuild? [${red}y${cyan}/${green}N${cyan}]${noColor}"
+            read -n 1 rebuildSwitch
+            
+            if [ "${rebuildSwitch}" = "y" ]; then
+                rm ${HOME}/.gtkrc-2.0
+                nh os test
+            fi
         ;;    
         "Reset to Commit")
             echo -e "${green}Resetting to last commit.${noColor}"
