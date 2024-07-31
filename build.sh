@@ -14,7 +14,7 @@ sleep 1
 
 cd ~/nixconf
 
-select testType in "Build Test" "Flake Update Test" "Pull and Rebuild" "Reset to Commit" "Build and Switch"
+select testType in "Build Test" "Flake Update Test" "Pull and Rebuild" "Switch Branch" "Reset to Commit" "Build and Switch"
 do
     case $testType in
         "Build Test")
@@ -62,7 +62,15 @@ do
             
             echo -e "${green}Rebuilding.${noColor}"
             nh os switch
-        ;;
+        ;;        
+        "Switch Branch")
+            echo -e "${green}Current branches on repo:${cyan}"
+            git show-branch     
+                   
+            echo -e "${green}Name the branch to switch to:${noColor}"
+            read branch
+            git switch ${branch}
+        ;;    
         "Reset to Commit")
             echo -e "${green}Resetting to last commit.${noColor}"
             git add .
