@@ -15,6 +15,7 @@
   in {
     devShells.${system}.default = pkgs.mkShell {
       nativeBuildInputs = with pkgs; [
+        git
         nh
         alejandra
       ];
