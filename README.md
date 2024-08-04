@@ -15,9 +15,13 @@
         5. Runs `nh os test`
         6. Optionally **commits** your changes with a given message
     3. **Pull and Rebuild:** *When you've made a change on another system and want those changes on your current system*
-    4. **Reset to Commit:** *When you've tested a change and are unhappy with it*
+    4. **Switch Branch:** *When you would like to switch to a different branch of your configuration to edit and/or rebuild*
+        1. Lists the branches
+        2. Asks what branch you would like to switch to *(Hint: You can prepend `-c` to create a new branch with a given name)*
+        3. Optionally allows you to rebuild with the branch
+    5. **Reset to Commit:** *When you've tested a change and are unhappy with it*
         1. Simply resets to your last commits
-2. If committing was not performed on last test, **commits** with given message
+2. If there are uncommitted changes, asks if you would like to **commit**.
 3. Asks if you want to switch to your config **now or on next boot**
 4. Asks if you want to **update your flake** using [nh](https://github.com/viperML/nh)  *(defaults to no)*
 5. **Rebuilds**

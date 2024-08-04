@@ -97,8 +97,12 @@ do
     esac
 done
 
-    if [ "${commit}" = "n" ]; then
-        fCommit
+    if [[ $(git diff) ]]; then
+        echo -e "${cyan}Would you like to commit the changes? [${red}y${cyan}/${green}N${cyan}]${noColor}"
+        read -n 1 commit
+        if [ "${commit}" = "y" ]; then
+            fCommit
+        fi
     fi
 
     echo -e "${green}Switch now or at boot?${cyan}"
