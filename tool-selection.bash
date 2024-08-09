@@ -12,7 +12,7 @@ git show-branch --list
 
 echo -e "${cyan}"
 
-select toolOption in "Test" "Branch" "Fetch" "Pull and Rebuild" "Reset to Commit" "Build"
+select toolOption in "Test" "Branch" "Fetch" "Reset to Commit" "Build"
 do
     case $toolOption in
         "Test")
@@ -24,14 +24,6 @@ do
         "Fetch")
             bash ~/nixbuild/scripts/fetch.bash
         ;;
-        "Pull and Rebuild")
-            echo -e "${green}Pulling from remote.${noColor}"
-            git pull
-            
-            echo -e "${green}Rebuilding.${noColor}"
-            rm ${HOME}/.gtkrc-2.0
-            nh os switch
-        ;;        
         "Reset to Commit")
             echo -e "${green}Resetting to last commit.${noColor}"
             git add .
@@ -42,4 +34,4 @@ do
         ;;
     esac
 done
-exit 1
+exit 0

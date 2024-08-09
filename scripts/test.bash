@@ -28,7 +28,7 @@ do
     
         echo -e "${green}Rebuilding with flake update.${noColor}"
         if (nh os test --update) then
-        
+
             echo -e "${cyan}Would you like to commit the changes? [${red}y${cyan}/${green}N${cyan}]${noColor}"
             read -n 1 commit
 
@@ -44,4 +44,4 @@ do
         break;;
     esac
 done
-exit 1
+exit 0

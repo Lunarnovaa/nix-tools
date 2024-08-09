@@ -21,4 +21,4 @@ do
         break;;
     esac
 done
-exit 1
+exit 0
