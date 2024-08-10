@@ -10,7 +10,7 @@ rm ${HOME}/.gtkrc-2.0
 if [ "$behindCount" -gt 0 ] && [ "$aheadCount" -gt 0 ]; then
     echo -e "${red}The branch has diverged. This feature is currently not implemented.${noColor}"
     exit 1
-elif [ "$aheadSum" -lt 0 ]; #ahead case
+elif [ "$aheadSum" -gt 0 ]; #ahead case
     if [[ $(git diff --cached) ]]; then
         echo -e "${cyan}Would you like to commit the changes? [${red}y${cyan}/${green}N${cyan}]${noColor}"
         read -n 1 commit
@@ -58,7 +58,7 @@ elif [ "$aheadSum" -lt 0 ]; #ahead case
         git push
     fi
 
-elif [ "$aheadSum" -gt 0 ]; #behind case
+elif [ "$aheadSum" -lt 0 ]; #behind case
     echo -e "${green}Pulling from remote.${noColor}"
     git pull
 
