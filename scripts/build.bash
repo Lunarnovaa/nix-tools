@@ -1,3 +1,14 @@
+# Checking if repo needs a commit
+if [[ $(git diff --cached) ]]; then
+    echo -e "${cyan}Would you like to commit the changes? [${red}y${cyan}/${green}N${cyan}]${noColor}"
+    read -n 1 commit
+    if [ "${commit}" = "y" ]; then
+        echo -e "\n${green}Please write commit message: ${noColor}"
+        read commitmsg
+        git commit -a -m "${commitmsg}"
+    fi
+fi
+
 # Checking differences between remote and local
 git fetch
 behindCount = $(git rev-list --count HEAD..@{u}) #checks how far behind the current local branch is behind the remote
@@ -11,16 +22,6 @@ if [ "$behindCount" -gt 0 ] && [ "$aheadCount" -gt 0 ]; then
     echo -e "${red}The branch has diverged. This feature is currently not implemented.${noColor}"
     exit 1
 elif [ "$aheadSum" -gt 0 ]; #ahead case
-    if [[ $(git diff --cached) ]]; then
-        echo -e "${cyan}Would you like to commit the changes? [${red}y${cyan}/${green}N${cyan}]${noColor}"
-        read -n 1 commit
-        if [ "${commit}" = "y" ]; then
-            echo -e "\n${green}Please write commit message: ${noColor}"
-            read commitmsg
-            git commit -a -m "${commitmsg}"
-        fi
-    fi
-
     echo -e "${green}Switch now or at boot?${cyan}"
     select switch in switch boot
     do 
