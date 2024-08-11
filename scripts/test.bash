@@ -1,14 +1,15 @@
-echo -e "${green}Adding all to working directory.${noColor}"
-git add . 
-
-echo -e "${green}Formatting Nix code.${noColor}"
-alejandra .
-
-rm ${HOME}/.gtkrc-2.0 #removing the backup of the annoying file :(
 
 echo -e "${cyan}"
 select testOption in "Basic Test" "Flake Update Test" "Return"
 do
+    echo -e "${green}Adding all to working directory.${noColor}"
+    git add . 
+
+    echo -e "${green}Formatting Nix code.${noColor}"
+    alejandra .
+
+    rm ${HOME}/.gtkrc-2.0 #removing the backup of the annoying file :(
+
     case $testOption in
     "Basic Test")
         echo -e "${green}Running build test.${noColor}"
