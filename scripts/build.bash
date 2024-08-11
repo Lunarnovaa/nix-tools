@@ -19,8 +19,16 @@ aheadSum = {$aheadCount - $behindCount} #evaluates whether local is ahead or beh
 rm ${HOME}/.gtkrc-2.0
 
 if [ "$behindCount" -gt 0 ] && [ "$aheadCount" -gt 0 ]; then
-    echo -e "${red}The branch has diverged. This feature is currently not implemented.${noColor}"
-    exit 1
+    if ! (git pull) then
+        git mergetool #in case of merge conflict, opens configured mergetool to resolve
+    fi
+
+    if (nh os test) then
+        # Here the script is restarted, now that the local branch is up to date it will result in the ahead case, rebuilding and pushing
+        bash ./build.bash
+        exit 0
+    fi
+    
 elif [ "$aheadSum" -gt 0 ]; #ahead case
     echo -e "${green}Switch now or at boot?${cyan}"
     select switch in switch boot
