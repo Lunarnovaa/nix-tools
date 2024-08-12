@@ -11,14 +11,14 @@ fi
 
 # Checking differences between remote and local
 git fetch
-behindCount = $(git rev-list --count HEAD..@{u}) #checks how far behind the current local branch is behind the remote
-aheadCount = $(git rev-list --count @{u}..HEAD) #checks how far ahead it is
+behindCount=$(git rev-list --count HEAD..@{u}) #checks how far behind the current local branch is behind the remote
+aheadCount=$(git rev-list --count @{u}..HEAD) #checks how far ahead it is
 
-aheadSum = {$aheadCount - $behindCount} #evaluates whether local is ahead or behind of remote
+aheadSum=(${aheadCount} - ${behindCount}) #evaluates whether local is ahead or behind of remote
 
 rm ${HOME}/.gtkrc-2.0
 
-if [ "$behindCount" -gt 0 ] && [ "$aheadCount" -gt 0 ]; then
+if [ "${behindCount}" -gt 0 ] && [ "$aheadCount" -gt 0 ]; then #diverge case
     if ! (git pull) then
         git mergetool #in case of merge conflict, opens configured mergetool to resolve
     fi
@@ -29,7 +29,7 @@ if [ "$behindCount" -gt 0 ] && [ "$aheadCount" -gt 0 ]; then
         exit 0
     fi
     
-elif [ "$aheadSum" -gt 0 ]; #ahead case
+elif [ "${aheadSum}" -gt 0 ]; then #ahead case
     echo -e "${green}Switch now or at boot?${cyan}"
     select switch in switch boot
     do 
@@ -67,7 +67,7 @@ elif [ "$aheadSum" -gt 0 ]; #ahead case
         git push
     fi
 
-elif [ "$aheadSum" -lt 0 ]; #behind case
+elif [ "${aheadSum}" -lt 0 ]; then #behind case
     echo -e "${green}Pulling from remote.${noColor}"
     git pull
 
