@@ -1,6 +1,8 @@
 echo -e "${red}Current branches on repo:"
 git show-branch --list
 
+echo -e "${cyan}"
+
 select branchOption in "Switch Branch" "Create New" "Delete Branch" "Return"
 do
     case $branchOption in
