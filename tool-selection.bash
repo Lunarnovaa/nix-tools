@@ -25,9 +25,15 @@ do
             bash ~/nixbuild/scripts/fetch.bash
         ;;
         "Reset to Commit")
-            echo -e "${green}Resetting to last commit.${noColor}"
-            git add .
-            git reset --hard HEAD
+            lastCommit=$(git log -1 --format=%s)
+            echo -e "${cyan}Warning: This action cannot be undone. Are you sure you would like to reset to: ${red}'${lastCommit}'${cyan}? [${red}y${cyan}/${green}N${cyan}]${noColor}"
+            read -n 1 reset
+            if [ "$reset" = "y" ]; then
+                git add .
+                git reset --hard HEAD
+            else
+                echo -e "${green}Reset cancelled.${noColor}"
+            fi
         ;;
         "Build")
             bash ~/nixbuild/scripts/build.bash
