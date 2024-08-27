@@ -1,3 +1,5 @@
+git add .
+
 # Checking if repo needs a commit
 if [[ $(git diff --cached) ]]; then
     echo -e "${cyan}Would you like to commit the changes? [${red}y${cyan}/${green}N${cyan}]${noColor}"

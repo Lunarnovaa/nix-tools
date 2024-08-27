@@ -1,6 +1,6 @@
 
 echo -e "${cyan}"
-select testOption in "Basic Test" "Flake Update Test" "Return"
+select testOption in "Basic Test" "Flake Update Test" "Boot Test" "Return"
 do
     echo -e "${green}Adding all to working directory.${noColor}"
     git add . 
@@ -40,6 +40,20 @@ do
             fi
         fi
 
+    ;;
+    "Boot Test")
+        echo -e "${green}Running boot test.${noColor}"
+        if (nh os boot) then
+
+            echo -e "${cyan}Would you like to commit the changes? [${red}y${cyan}/${green}N${cyan}]${noColor}"
+            read -n 1 commit
+
+            if [ "${commit}" = "y" ]; then
+                echo -e "\n${green}Please write commit message: ${noColor}"
+                read commitmsg
+                git commit -a -m "${commitmsg}"
+            fi
+        fi
     ;;
     "Return")
         break;;
