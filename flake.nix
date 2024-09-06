@@ -23,10 +23,14 @@
       shellHook = ''
         git pull # here so that the script does not get changed during run
 
-        export FLAKE="$HOME/nixconf"
         bash tool-selection.bash
         exit
       '';
+      FLAKE = "$HOME/nixconf";
+      green = ''\033[1;32m'';
+      cyan = ''\033[1;36m'';
+      red = ''\033[1;31m'';
+      noColor = ''\033[0m'';
     };
   };
 }

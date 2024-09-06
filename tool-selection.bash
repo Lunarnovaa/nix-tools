@@ -1,8 +1,3 @@
-export green='\033[1;32m'
-export cyan='\033[1;36m'
-export red='\033[1;31m'
-export noColor='\033[0m'
-
 echo -e "${green}Welcome to Nix-Tools."
 
 cd ~/nixconf
