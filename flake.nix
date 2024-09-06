@@ -26,7 +26,7 @@
         bash tool-selection.bash
         exit
       '';
-      FLAKE = "$HOME/nixconf";
+      FLAKE = "/home/lunarnova/nixconf";
       green = ''\033[1;32m'';
       cyan = ''\033[1;36m'';
       red = ''\033[1;31m'';
