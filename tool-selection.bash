@@ -7,14 +7,11 @@ git show-branch --list
 
 echo -e "${cyan}"
 
-select toolOption in "Test" "Branch" "Fetch" "Reset to Commit" "Build"
+select toolOption in "Test" "Fetch" "Reset to Commit" "Build"
 do
     case $toolOption in
         "Test")
             bash ~/nixbuild/scripts/test.bash
-        ;;
-        "Branch")           
-            bash ~/nixbuild/scripts/branch.bash
         ;;
         "Fetch")
             bash ~/nixbuild/scripts/fetch.bash
