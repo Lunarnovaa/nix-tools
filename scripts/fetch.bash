@@ -10,10 +10,14 @@ do
         echo -e "${green}pkg:${noColor}"
         read pkg
 
+        mkdir $HOME/.cache/nix-tools
+        cd $HOME/.cache/nix-tools
         if (nix build nixpkgs#${pkg}); then
             cd result
             nix run nixpkgs#eza -- --tree
         fi
+        cd ${FLAKE}
+        rm -rf $HOME/.cache/nix-tools
     ;;
     "Return")
         break;;
