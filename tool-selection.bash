@@ -1,6 +1,6 @@
 echo -e "${green}Welcome to Nix-Tools."
 
-cd ~/nixconf
+cd ${FLAKE}
 
 echo -e "${red}Current branches on repo:"
 git show-branch --list
@@ -11,10 +11,10 @@ select toolOption in "Test" "Fetch" "Reset to Commit" "Build"
 do
     case $toolOption in
         "Test")
-            bash ~/nixbuild/scripts/test.bash
+            bash ${toolsDir}/scripts/test.bash
         ;;
         "Fetch")
-            bash ~/nixbuild/scripts/fetch.bash
+            bash ${toolsDir}/scripts/fetch.bash
         ;;
         "Reset to Commit")
             lastCommit=$(git log -1 --format=%s)
@@ -28,7 +28,7 @@ do
             fi
         ;;
         "Build")
-            bash ~/nixbuild/scripts/build.bash
+            bash ${toolsDir}/scripts/build.bash
         ;;
     esac
 done

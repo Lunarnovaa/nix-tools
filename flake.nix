@@ -27,6 +27,8 @@
         exit
       '';
       FLAKE = "/home/lunarnova/nixconf";
+      toolsDir = "/home/lunarnova/nix-tools";
+      
       green = ''\033[1;32m'';
       cyan = ''\033[1;36m'';
       red = ''\033[1;31m'';
