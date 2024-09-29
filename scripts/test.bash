@@ -10,7 +10,7 @@ commitRequest () {
 }
 
 echo -e "${cyan}"
-select testOption in "Basic Test" "Flake Update Test" "Boot Test" "Return"
+select testOption in "Basic Test" "Flake Update Test" "Boot Test" "Special Case" "Return"
 do
     echo -e "${green}Adding all to working directory.${noColor}"
     git add . 
@@ -49,6 +49,14 @@ do
             if (nh os boot) then
                 commitRequest
             fi
+        fi
+    ;;
+    "Special Case")
+        echo -e "${cyan}Input command:${noColor}"
+        read specialCase
+
+        if (${specialCase}) then
+            commitRequest
         fi
     ;;
     "Return")
