@@ -1,10 +1,15 @@
-select branchOption in "Fetch URL" "Fetch pkg Tree" "Return"
+select branchOption in "Fetch URL" "nurl" "Fetch pkg Tree" "Return"
 do
     case $branchOption in
     "Fetch URL")
         echo -e "${green}URL:${noColor}"
         read url
         nix-prefetch-url "${url}"
+    ;;
+    "nurl")
+        echo -e "${green}URL:${noColor}"
+        read url
+        nurl "${url}"
     ;;
     "Fetch pkg Tree")
         echo -e "${green}pkg:${noColor}"

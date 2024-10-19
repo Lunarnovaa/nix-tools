@@ -10,7 +10,7 @@ commitRequest () {
 }
 
 echo -e "${cyan}"
-select testOption in "Basic Test" "Flake Update Test" "Boot Test" "Special Case" "Return"
+select testOption in "Basic Test" "Boot Test" "Refresh Tofi-Drun Cache" "Special Case" "Return"
 do
     echo -e "${green}Adding all to working directory.${noColor}"
     git add . 
@@ -27,14 +27,6 @@ do
             commitRequest
         fi
     ;;
-    "Flake Update Test")
-    
-        echo -e "${green}Rebuilding with flake update.${noColor}"
-        if (nh os test --update) then
-            commitRequest
-        fi
-
-    ;;
     "Boot Test")
         echo -e "${cyan}Would you like to update the flake as well? [${red}y${cyan}/${green}N${cyan}]${noColor}"
         read -n 1 testUpdate
@@ -50,6 +42,13 @@ do
                 commitRequest
             fi
         fi
+    ;;
+    "Refresh Tofi-Drun Cache")
+        echo -e "${green}Clearing tofi-drun cache.${noColor}"
+        rm ${HOME}/.cache/tofi-drun #deleting cache for tofi-drun so that the desktop apps actually update
+        
+        echo -e "${green}Rebuilding to update cache.${noColor}"
+        nh os test
     ;;
     "Special Case")
         echo -e "${cyan}Input command:${noColor}"

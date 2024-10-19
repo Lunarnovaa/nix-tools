@@ -19,6 +19,7 @@
         nh
         alejandra
         nix-prefetch-scripts
+        nurl
       ];
       shellHook = ''
         git pull # here so that the script does not get changed during run

@@ -48,6 +48,7 @@ elif [ ${aheadSum} -gt 0 ]; then #ahead case
     echo -e "${cyan}Update? [${red}y${cyan}/${green}N${cyan}]${noColor}"
     read -n 1 update
     if [ "${update}" = "y" ]; then
+    
         nh os ${switch} --update --ask #asks so you dont get shocked by everything restarting
         echo -e "${green}Committing update.${noColor}"
         git commit -a -m "Flake Update"
