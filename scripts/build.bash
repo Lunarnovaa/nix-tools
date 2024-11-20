@@ -27,7 +27,7 @@ if [ ${behindCount} -gt 0 ] && [ ${aheadCount} -gt 0 ]; then #diverge case
 
     if (nh os test) then
         # Here the script is restarted, now that the local branch is up to date it will result in the ahead case, rebuilding and pushing
-        bash ./build.bash
+        bash ${toolsDir}/scripts/build.bash
         exit 0
     fi
     
